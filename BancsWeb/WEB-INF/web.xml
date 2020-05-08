@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+  <display-name>BaNCS</display-name>
+   
+    
+  <welcome-file-list>
+    <welcome-file>.index.jsp</welcome-file>
+  </welcome-file-list>
+  
+  <filter>
+    <filter-name>urlRewriteFilter</filter-name>
+    <filter-class>com.tcs.bancs.core.UrlRewriteFilter</filter-class>
+</filter>
+<filter-mapping>
+    <filter-name>urlRewriteFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+</filter-mapping>
+
+  <servlet>
+  		<description></description>
+		<servlet-name>LoginServlet</servlet-name>
+		<servlet-class>com.tcs.bancs.user.LoginServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>LoginServlet</servlet-name>
+		<url-pattern>/LoginServlet</url-pattern>
+		
+	</servlet-mapping>
+	
+	
+</web-app>
