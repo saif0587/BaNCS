@@ -1,4 +1,4 @@
-<%String name=(String)session.getAttribute("username");%>
+<%String name=(String)session.getAttribute("firstname");%>
 
 <div id="header">
 <img src="common/images/logo.jpg"/>

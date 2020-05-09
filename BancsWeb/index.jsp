@@ -1,5 +1,5 @@
 <div id="container">
-    <%String name=(String)session.getAttribute("username");
+    <%String name=(String)session.getAttribute("firstname");
     session.setAttribute("contact_status","null");    			      					      			
     %>
     

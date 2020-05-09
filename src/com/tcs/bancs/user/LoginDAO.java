@@ -29,11 +29,13 @@ public class LoginDAO {
         String password = bean.getPassword();   
 	    
         String searchQuery =
-              "select * from users where username='"
-                       + username
-                       + "' AND password='"
-                       + password
-                       + "'";
+        		"SELECT * FROM (SELECT QU.USERID USERID, QU.PASSWORD PASSWORD, QU.ISADMIN ISADMIN, QU.CONNECTIONSTAT CONNECTIONSTAT, UP.FIRSTNAME FIRSTNAME, UP.LASTAME LASTAME, UP.USERSTAT USERSTAT FROM Q_USER QU JOIN USER_PROFILE UP USING (LOGINID)) WHERE USERID = '"
+        				+ username
+        				+ "' AND PASSWORD = '"
+        				+ password
+        				+ "'";
+        
+        System.out.println("Search Query " + searchQuery);
 
 	    
      try 
@@ -41,23 +43,30 @@ public class LoginDAO {
     	 connection = JNDILookup.connectionManager();
     	 statement = connection.createStatement();
         
-    	 resultSet = statement.executeQuery(searchQuery);	        
-         boolean more = resultSet.next();
-	       
-        // if user does not exist set the isValid variable to false
-        if (!more) 
-        {
-           System.out.println("Sorry, you are not a registered user! Please sign up first");
-           bean.setValid(false);
-        } 
-	        
-        //if user exists set the isValid variable to true
-        else if (more) 
-        {
-           bean.setValid(true);
-        }
-     } 
+    	 resultSet = statement.executeQuery(searchQuery);
+    	 
+    	 while (resultSet.next()) 
+    	 {
+    		 
+    		 System.out.println("From DB " + "username - " + resultSet.getString("USERID") + " password - " + resultSet.getString("PASSWORD") + " connectionstat " + resultSet.getInt("CONNECTIONSTAT"));
+    		 
+    		 if ((username.equals(resultSet.getString("USERID"))) && (password.equals(resultSet.getString("PASSWORD"))) && resultSet.getInt("CONNECTIONSTAT") == 0) 
+    		 {
+    			 
+    			 System.out.println("User varified. Login action initiated");
+    	         bean.setValid(true);
+    	         bean.setISAdmin(resultSet.getInt("ISADMIN"));
+    	         bean.setFirstname(resultSet.getString("FIRSTNAME"));	 
+    		 }
+    		 else
+    		 {
+    			   System.out.println("Sorry, you are not a registered user! Please sign up first");
+    	           bean.setValid(false);
+    		 }
 
+    	 }
+         
+     } 
      catch (Exception ex) 
      {
         System.out.println("Log In failed: An Exception has occurred! " + ex);

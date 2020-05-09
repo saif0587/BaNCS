@@ -1,5 +1,5 @@
 <div id="container">
-    <%String name=(String)session.getAttribute("username");%>
+    <%String name=(String)session.getAttribute("firstname");%>
 <link href="common/css/css.css" rel="stylesheet" type="text/css"/>
 <jsp:include page="header.jsp"></jsp:include>
 

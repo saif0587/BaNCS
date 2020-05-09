@@ -28,6 +28,7 @@ public class JNDILookup {
 			   Hashtable<String, String> hashtable = null;
 			   
 			   try {
+				   System.out.println("Propertes Path " + System.getProperty("bancs.bootstrap.properties.path") + "\\Bootstrap\\bootstrap.properties");
 				hashtable = hashTable.dataCaching(System.getProperty("bancs.bootstrap.properties.path") + "\\Bootstrap\\bootstrap.properties");
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
@@ -36,10 +37,20 @@ public class JNDILookup {
 
 			   
 			   try {
-				   context = new InitialContext(hashtable);
-				     
-				     DataSource datasource = (DataSource)  context.lookup(hashtable.get("DataSourceName"));
-				     connection = datasource.getConnection();
+
+				   
+				    System.out.println("Try Block");
+				   	context = new InitialContext(hashtable);
+				   	System.out.println("context initialised " + context.toString());
+				   	
+				    DataSource datasource = (DataSource)  context.lookup(hashtable.get("DataSourceName"));
+				    System.out.println("datasource lookup done " + datasource.toString());
+				    
+
+				    
+				    
+				    connection = datasource.getConnection();
+				    System.out.println("Connection Check " + connection.toString());
 				     
 				     
 				   }

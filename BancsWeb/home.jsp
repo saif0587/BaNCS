@@ -1,4 +1,7 @@
-<%String name=(String)session.getAttribute("username");
+<%@page import="com.tcs.bancs.core.JNDILookup"%>
+<%@page import="java.sql.*"%>
+<%String name = (String)session.getAttribute("firstname");
+
 
 if(name==null)
 {
@@ -7,7 +10,23 @@ if(name==null)
 
 else
 {
-if(name.equals("admin"))
+	int ISAdmin = (int)session.getAttribute("ISAdmin");
+	String username = (String)session.getAttribute("username");
+	
+	try
+	{
+		Connection connection = JNDILookup.connectionManager();
+		Statement statement = connection.createStatement();
+		
+		String updateQuery = "update Q_USER set CONNECTIONSTAT = 1 where USERID = '" + username + "'";
+		System.out.println("Update Query " + updateQuery);
+		int count = statement.executeUpdate(updateQuery);
+	}
+	catch(Exception e)
+    {
+    	
+    }
+	if(ISAdmin == 1)
 	{
 		response.sendRedirect("register.jsp");
 	}

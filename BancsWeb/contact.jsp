@@ -1,4 +1,4 @@
-<%String name=(String)session.getAttribute("username");
+<%String name=(String)session.getAttribute("firstname");
     String s=(String)session.getAttribute("contact_status");
     %>
 

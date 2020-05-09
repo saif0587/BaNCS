@@ -11,6 +11,8 @@ public class LoginBean {
 
 	private String username;
     private String password;
+    private int ISAdmin;
+    private String firstname;
     public boolean valid;
     
 	public String getUsername() {
@@ -30,6 +32,18 @@ public class LoginBean {
 	}
 	public void setValid(boolean valid) {
 		this.valid = valid;
+	}
+	public int getISAdmin() {
+		return ISAdmin;
+	}
+	public void setISAdmin(int iSAdmin) {
+		ISAdmin = iSAdmin;
+	}
+	public String getFirstname() {
+		return firstname;
+	}
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
 	}
     
 

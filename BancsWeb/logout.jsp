@@ -1,4 +1,6 @@
-<%String name=(String)session.getAttribute("username");
+<%@page import="com.tcs.bancs.core.JNDILookup"%>
+<%@page import="java.sql.*"%>
+<%String name=(String)session.getAttribute("firstname");
 
 if(name==null)
 {
@@ -6,6 +8,21 @@ if(name==null)
 }
 else
 {
+	String username = (String)session.getAttribute("username");
+	
+	try
+	{
+		Connection connection = JNDILookup.connectionManager();
+		Statement statement = connection.createStatement();
+		
+		String updateQuery = "update Q_USER set CONNECTIONSTAT = 0 where USERID = '" + username + "'";
+		System.out.println("Update Query " + updateQuery);
+		int count = statement.executeUpdate(updateQuery);
+	}
+	catch(Exception e)
+    {
+    	
+    }
 %>
 <div id="container">
 <link href="common/css/css.css" rel="stylesheet" type="text/css"/>

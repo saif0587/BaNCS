@@ -33,19 +33,27 @@ public class LoginServlet extends HttpServlet {
 		
 		System.out.println("SAIF AHMAD");
 		LoginBean LoginPage = new LoginBean();
-		String username = request.getParameter("username");
-		String password = request.getParameter("password");
 		
-		//LoginPage = LoginDAO.login(LoginPage);
-		System.out.println("username - " + username + " password - " + password);
-		if(username.equals("admin") && password.equals("admin"))
+		System.out.println("Entered " + "username - " + request.getParameter("username") + " password - " + request.getParameter("password"));
+		
+		LoginPage.setUsername(request.getParameter("username"));
+		LoginPage.setPassword(request.getParameter("password"));
+		
+		
+		LoginPage = LoginDAO.login(LoginPage);
+		
+		if(LoginPage.isValid())
 		{
 			System.out.println("true");
 			HttpSession session = request.getSession();
-			session.setAttribute("username", username);
+			session.setAttribute("firstname", LoginPage.getFirstname());
+			session.setAttribute("ISAdmin", LoginPage.getISAdmin());
+			session.setAttribute("username", LoginPage.getUsername());
 			//setting session to expiry in 30 mins
 			session.setMaxInactiveInterval(30*60);
-			Cookie userName = new Cookie("username", username);
+			Cookie userName = new Cookie("firstname", LoginPage.getFirstname());
+			session.setAttribute("ISAdmin", LoginPage.getISAdmin());
+			session.setAttribute("username", LoginPage.getUsername());
 			userName.setMaxAge(30*60);
 			response.addCookie(userName);
 			

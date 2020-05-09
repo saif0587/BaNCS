@@ -1,5 +1,6 @@
 
-<%String name=(String)session.getAttribute("username");
+<%String name=(String)session.getAttribute("firstname");
+int ISAdmin=(int)session.getAttribute("ISAdmin");
 //String s=(String)session.getAttribute("register_status");
 String s="error";
 if(name==null)
@@ -8,7 +9,7 @@ if(name==null)
 }
 else
 {
-	if(name.equals("admin"))
+	if(ISAdmin == 1)
 {
 %>
 
