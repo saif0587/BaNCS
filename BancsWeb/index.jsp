@@ -36,7 +36,7 @@
     <%}
     else
       {%>
-        <p>* Online banking is the practice of making bank transactions or paying bills via the Internet.
+        <p>* Online Banking is the practice of making bank transactions or paying bills via the Internet.
 <br/></br>* Banking online allows a customer to make deposits, withdrawals, transfers with the click of a mouse.
 <br/><br/>* Online banking also eliminates paper waste, which is a plus not only for those who have to handle all the paper work, but also for the environment.
 <br/><br/>* Security is always an issue with Internet transactions. Although information is encrypted , and the chances of an account being hacked are slim, it happen.
